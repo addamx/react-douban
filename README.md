@@ -1,2 +1,2 @@
-# react-douban
+# react-douban-movie
 react study
