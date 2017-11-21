@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import movie from './movie';
+import {InTheaters} from './movie';
+import {SearchResult} from './search'
 
 export default combineReducers({
-  movie
+  InTheaters,
+  SearchResult
 });

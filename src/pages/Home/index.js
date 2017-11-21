@@ -11,4 +11,4 @@ const mapDispatchToProps = (dispatch) => {
     movieActions: bindActionCreators(movieActions, dispatch)
   }
 };
-export default connect(null, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

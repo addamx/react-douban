@@ -21,8 +21,7 @@ module.exports = {
     }
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.vue$/,
         loader: 'vue-loader'
       },
@@ -32,13 +31,23 @@ module.exports = {
         exclude: path.resolve('./node_modules/'),
         include: path.resolve('./src/')
       },
-      {	//不同于css文件, 即使less/sass有@import, 也不需要css-loader的importLoaders值
+      {
+        test: /\.css$/,
+        use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader'
+        }))
+      },
+      { //不同于css文件, 即使less/sass有@import, 也不需要css-loader的importLoaders值
         test: /\.less$/,
         use: extractLESS.extract(['style-loader', 'css-loader', 'postcss-loader', 'less-loader'])
       },
       {
         test: /\.scss$/,
-        use: extractCSS.extract(['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'])
+        use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({ // css-hot-loader结局热替换CSS不自动刷新
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader']
+        }))
       },
       {
         test: /\.html$/,
@@ -56,15 +65,13 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|gif|svg)$/i,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 5000,
-              name: 'assets/[name]-[hash:5].[ext]'
-            }
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 5000,
+            name: 'assets/[name]-[hash:5].[ext]'
           }
-        ]
+        }]
       },
       {
         test: /\.(woff|woff2|svg|ttf|eot)($|\?)/i,

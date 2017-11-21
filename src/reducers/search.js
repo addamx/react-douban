@@ -1,17 +1,17 @@
 import * as actionTypes from '../constants/actionTypes'
 
 const initState = {
-  count: '99',
+  title: '默认搜索标题',
   subjects: []
 }
 
-const InTheaters = (state = initState, action) => {
+const SearchResult = (state = initState, action) => {
   switch (action.type) {
-    case actionTypes.SAVE_IN_THEATERS:
+    case actionTypes.SAVE_SEARCH_RESULT:
         return action.data;
         break;
     default:
         return state
   }
 }
-export {InTheaters};
+export {SearchResult};

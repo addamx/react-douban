@@ -12,4 +12,6 @@ const store = (initialState) => {
   );
 };
 
+console.log(store().getState())
+
 export default store;

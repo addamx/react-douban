@@ -3,25 +3,24 @@ import API from '../util/API';
 import request from '../util/request';
 import * as actionTypes from '../constants/actionTypes';
 
-// 获取正在上映
-const fetchInTheaters = () => {
+const searchMovie = (text) => {
   return async dispatch => {
     // dispatch(spin_show());
     try {
-      let result = await request.asyncGet(API.in_theaters);
+      let result = await request.asyncGet(`${API.search_movie}?q=${text}`);
       let resultData = await result.json();
-      dispatch(saveInTheaters(resultData));
+      dispatch(saveSearchResult(resultData));
     } catch (err) {
       console.log("Error", err);
     }
   }
 };
 
-const saveInTheaters = (data) => {
+const saveSearchResult = (data) => {
   return {
-    type: actionTypes.SAVE_IN_THEATERS,
+    type: actionTypes.SAVE_SEARCH_RESULT,
     data
   }
 }
 
-export { fetchInTheaters };
+export { searchMovie };

@@ -18,6 +18,6 @@ module.exports = merge(baseWebpackConfig, {
       template: 'index.html',
       inject: 'body'
     }),
-    new OpenBrowserPlugin({ url: 'http://localhost:3300' })//-自动调用浏览器打开url
+    //new OpenBrowserPlugin({ url: 'http://localhost:3300' })//-自动调用浏览器打开url
   ]
 })
