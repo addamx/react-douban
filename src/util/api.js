@@ -3,6 +3,7 @@
  */
 const API = {
   in_theaters: '/api/movie/in_theaters',
+  coming_soon: '/api/movie/coming_soon',
   search_movie: '/api/movie/search'
 };
 

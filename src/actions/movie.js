@@ -24,4 +24,25 @@ const saveInTheaters = (data) => {
   }
 }
 
-export { fetchInTheaters };
+// 获取即将上映
+const fetchComingSoon = () => {
+  return async dispatch => {
+    // dispatch(spin_show());
+    try {
+      let result = await request.asyncGet(API.coming_soon);
+      let resultData = await result.json();
+      dispatch(saveComingSoon(resultData));
+    } catch (err) {
+      console.log("Error", err);
+    }
+  }
+};
+
+const saveComingSoon = (data) => {
+  return {
+    type: actionTypes.SAVE_COMING_SOON,
+    data
+  }
+}
+
+export { fetchInTheaters, fetchComingSoon };

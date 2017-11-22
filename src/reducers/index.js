@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
-import {InTheaters} from './movie';
+import { InTheaters, ComingSoon} from './movie';
 import {SearchResult} from './search'
 
 export default combineReducers({
   InTheaters,
+  ComingSoon,
   SearchResult
 });

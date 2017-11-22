@@ -15,10 +15,7 @@ export default class extends Component {
     ]
     return (
       <div>
-        <Tabs tabs={tabs}
-          onChange={(tab, index) => { console.log('onTabChange', index, tab); }}
-          onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
-        >
+        <Tabs tabs={tabs}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
             <InTheaters {...this.props} />
           </div>

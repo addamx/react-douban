@@ -1,5 +1,5 @@
 import React from 'react'
-import Movie from '../Common/movie'
+import Movie from '../Common/Movie'
 
 export default class extends React.Component {
   constructor(props) {
