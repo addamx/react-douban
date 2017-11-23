@@ -1,27 +1,40 @@
 import React, { Component } from 'react'
 import {SearchBar} from 'antd-mobile'
 import SearchResult from './SearchResult'
+import Footer from '../common/Footer'
 import { Pagination, Icon } from 'antd-mobile'
+import SearchMovieAly from '../../util/SearchMovieAly'
 
 export default class extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      value: '神探',
-      currentPage: 1
+      value: '张艺谋',
+      currentPage: 1,
+      messResult: {
+        genreList: [],
+        filmmakerList: [],
+        movieList: []
+      }
     }
     this.onChange = this.onChange.bind(this)
     this.onPageChange = this.onPageChange.bind(this)
+    this.fetchResult = this.fetchResult.bind(this)
   }
-  
+
   componentDidMount() {
-    this.props.searchActions.searchMovie(this.state.value)
+    this.fetchResult(this.state.value)
+  }
+
+  async fetchResult() {
+    await this.props.searchActions.searchMovie(this.state.value)
+    await this.setState({ messResult: new SearchMovieAly(this.props.SearchResult, this.state.value).getMessResult() })
   }
 
   onChange(value) {
-    this.setState({ value });
-    this.props.searchActions.searchMovie(value)
-    this.setState({currentPage: 1})
+    this.setState({ value })
+    this.fetchResult()
+    this.setState({ currentPage: 1 })
   }
 
   onPageChange(page) {
@@ -45,8 +58,8 @@ export default class extends Component {
           value={this.state.value}
           onChange={this.onChange}
         />
-        <SearchResult {...this.props} />
-        <Pagination 
+        <SearchResult {...this.props} messResult={this.state.messResult} />
+        {/* <Pagination
           total={pages}
           className="custom-pagination-with-icon"
           current={this.state.currentPage}
@@ -55,7 +68,8 @@ export default class extends Component {
             nextText: (<span className="arrow-align">下一步<Icon type="right" /></span>),
           }}
           onChange = {this.onPageChange}
-        />
+        /> */}
+        <Footer {...this.props} pageId={'rankTab'}/>
       </div>
     )
   }
