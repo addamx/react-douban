@@ -2,15 +2,14 @@ import React, { Component } from 'react'
 import {SearchBar} from 'antd-mobile'
 import SearchResult from './SearchResult'
 import Footer from '../common/Footer'
-import { Pagination, Icon } from 'antd-mobile'
+import { Pagination } from 'antd-mobile'
 import SearchMovieAly from '../../util/SearchMovieAly'
 
 export default class extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      value: '张艺谋',
-      currentPage: 1,
+      value: this.props.query || '',
       messResult: {
         genreList: [],
         filmmakerList: [],
@@ -34,7 +33,6 @@ export default class extends Component {
   onChange(value) {
     this.setState({ value })
     this.fetchResult()
-    this.setState({ currentPage: 1 })
   }
 
   onPageChange(page) {
@@ -48,7 +46,6 @@ export default class extends Component {
   }
 
   render() {
-    const pages = this.getPages();
 
     return (
       <div className="container search-page">
@@ -58,17 +55,8 @@ export default class extends Component {
           value={this.state.value}
           onChange={this.onChange}
         />
-        <SearchResult {...this.props} messResult={this.state.messResult} />
-        {/* <Pagination
-          total={pages}
-          className="custom-pagination-with-icon"
-          current={this.state.currentPage}
-          locale={{
-            prevText: (<span className="arrow-align"><Icon type="left" />上一步</span>),
-            nextText: (<span className="arrow-align">下一步<Icon type="right" /></span>),
-          }}
-          onChange = {this.onPageChange}
-        /> */}
+        <SearchResult {...this.props} messResult={this.state.messResult} query={this.state.value} />
+
         <Footer {...this.props} pageId={'rankTab'}/>
       </div>
     )

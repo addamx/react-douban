@@ -7,6 +7,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import Home from '../pages/Home';
 import Search from '../pages/Search';
+import MovieSearch from '../pages/Search/MovieSearch';
 
 //import NotFound from '../components/Common/NotFound';
 
@@ -16,6 +17,7 @@ const Routes = () => (
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/search" component={Search} />
+        <Route path="/search-movie" component={MovieSearch} />
 
         {/* <Route path='/404' component={NotFound} /> */}
         {/* <Redirect from='*' to='/404' /> */}
