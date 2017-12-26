@@ -4,6 +4,8 @@ import SearchResult from './SearchResult'
 import Footer from '../common/Footer'
 import { Pagination } from 'antd-mobile'
 import SearchMovieAly from '../../util/SearchMovieAly'
+import { debounce } from '../../util/func'
+
 
 export default class extends Component {
   constructor(props) {
@@ -18,7 +20,7 @@ export default class extends Component {
     }
     this.onChange = this.onChange.bind(this)
     this.onPageChange = this.onPageChange.bind(this)
-    this.fetchResult = this.fetchResult.bind(this)
+    this.fetchResult = debounce(1000, this.fetchResult);
   }
 
   componentDidMount() {

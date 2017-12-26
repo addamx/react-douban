@@ -17,4 +17,17 @@ const unique = (arr, id = '') => {
   return result
 }
 
-export { unique }
+
+var debounce = function (idle, action) {
+  var last
+  console.log(last)
+  return function () {
+    var ctx = this, args = arguments
+    clearTimeout(last)
+    last = setTimeout(function () {
+      action.apply(ctx, args)
+    }, idle)
+  }
+}
+
+export { unique, debounce }
