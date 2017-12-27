@@ -16,7 +16,7 @@ export default class extends React.Component {
           <ul>
             {
               this.props.messResult.genreList.map((el, index) => (
-                <li key={index}><a href="#" onClick={(e) => {e.preventDefault()}}>{el}</a></li>
+                <li key={index}><Link to={`/search-movie?tag=${el}`}>{el}</Link></li>
               ))
             }
           </ul>
@@ -26,7 +26,7 @@ export default class extends React.Component {
           <ul>
             {
               this.props.messResult.filmmakerList.map((el, index) => (
-                <li key={index}><a href="#" onClick={(e) => { e.preventDefault(); }}><img src={el.avatars && el.avatars.small}/>{el.name}</a></li>
+                <li key={index}><Link to={`/search-movie?q=${el.name}`}><img src={el.avatars && el.avatars.small}/>{el.name}</Link></li>
               ))
             }
           </ul>

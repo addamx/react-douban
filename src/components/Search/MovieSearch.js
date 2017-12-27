@@ -1,19 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { SearchBar, Pagination, Icon } from 'antd-mobile'
-
+import { getQueryKeys, debounce } from '../../util/func'
 
 export default class extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      value: this.props.location.search ? new URLSearchParams(this.props.location.search).get('q') : '',
+      value: this.props.location.search ? getQueryKeys(this.props.location.search, 'q') : '',
       currentPage: 1
     }
     this.onChange = this.onChange.bind(this)
     this.onPageChange = this.onPageChange.bind(this)
     this.fetchResult = this.fetchResult.bind(this)
     this.getPages = this.getPages.bind(this)
+    this.fetchResult = debounce(500, this.fetchResult)
   }
 
   componentDidMount() {

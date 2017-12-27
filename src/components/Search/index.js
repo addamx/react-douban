@@ -20,7 +20,7 @@ export default class extends Component {
     }
     this.onChange = this.onChange.bind(this)
     this.onPageChange = this.onPageChange.bind(this)
-    this.fetchResult = debounce(1000, this.fetchResult);
+    this.fetchResult = debounce(500, this.fetchResult);
   }
 
   componentDidMount() {
@@ -56,6 +56,7 @@ export default class extends Component {
           showCancelButton
           value={this.state.value}
           onChange={this.onChange}
+          onCancel={() => history.go(-1)}
         />
         <SearchResult {...this.props} messResult={this.state.messResult} query={this.state.value} />
 

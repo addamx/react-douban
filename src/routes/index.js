@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import Home from '../pages/Home';
 import Search from '../pages/Search';
 import MovieSearch from '../pages/Search/MovieSearch';
+import Movie from '../pages//Movie';
 
 //import NotFound from '../components/Common/NotFound';
 
@@ -18,6 +19,7 @@ const Routes = () => (
         <Route path="/" exact component={Home} />
         <Route path="/search" component={Search} />
         <Route path="/search-movie" component={MovieSearch} />
+        <Route path="/movie" component={Movie} />
 
         {/* <Route path='/404' component={NotFound} /> */}
         {/* <Redirect from='*' to='/404' /> */}

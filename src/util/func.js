@@ -18,16 +18,25 @@ const unique = (arr, id = '') => {
 }
 
 
-var debounce = function (idle, action) {
-  var last
-  console.log(last)
-  return function () {
-    var ctx = this, args = arguments
+const debounce = (idle, action) => {
+  let last;
+  return function() {
+    let ctx = this, args = arguments;
     clearTimeout(last)
-    last = setTimeout(function () {
+    last = setTimeout(() => {
       action.apply(ctx, args)
     }, idle)
   }
 }
 
-export { unique, debounce }
+const getQueryKeys = function(query) {
+  let queryObj = new URLSearchParams(query)
+  let args = [].slice.call(arguments, 1);
+  return args.map((el) => (
+    queryObj.get(el)
+  )).join(' ')
+}
+
+
+
+export { unique, debounce, getQueryKeys }
