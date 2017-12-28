@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import HeadBar from '../common/HeadBar'
-// import Comments from '../common/Comments'
 import request from '../../util/request'
 import API from '../../util/API'
 import { getQueryKeys } from '../../util/func'

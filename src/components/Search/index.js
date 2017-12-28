@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import {SearchBar} from 'antd-mobile'
 import SearchResult from './SearchResult'
-import Footer from '../common/Footer'
 import { Pagination } from 'antd-mobile'
 import SearchMovieAly from '../../util/SearchMovieAly'
 import { debounce } from '../../util/func'
@@ -60,7 +59,6 @@ export default class extends Component {
         />
         <SearchResult {...this.props} messResult={this.state.messResult} query={this.state.value} />
 
-        <Footer {...this.props} pageId={'rankTab'}/>
       </div>
     )
   }

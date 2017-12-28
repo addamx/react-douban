@@ -26,7 +26,7 @@ export default class extends React.Component {
         name: '排行榜',
         icon: 'https://zos.alipayobjects.com/rmsportal/sifuoDUQdAFKAVcFGROC.svg',
         selectedIcon: 'https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg',
-        route: '/search'
+        route: '/rank'
       }
     ]
     return (

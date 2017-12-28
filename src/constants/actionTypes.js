@@ -1,5 +1,7 @@
 const SAVE_IN_THEATERS = 'saveInTheaters'
 const SAVE_SEARCH_RESULT = 'saveSearchResult'
 const SAVE_COMING_SOON = 'saveComingSoon'
+const SAVE_TOP_IN_ALL = 'saveTopInAll'
+const SAVE_TOP_IN_NA = 'saveTopInNA'
 
-export { SAVE_IN_THEATERS, SAVE_SEARCH_RESULT, SAVE_COMING_SOON};
+export { SAVE_IN_THEATERS, SAVE_SEARCH_RESULT, SAVE_COMING_SOON, SAVE_TOP_IN_ALL, SAVE_TOP_IN_NA};

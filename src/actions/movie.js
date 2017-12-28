@@ -5,14 +5,13 @@ import * as actionTypes from '../constants/actionTypes';
 
 // 获取正在上映
 const fetchInTheaters = () => {
-  return async dispatch => {
-    // dispatch(spin_show());
+  return async (dispatch) => {
     try {
       let result = await request.asyncGet(API.in_theaters);
       let resultData = await result.json();
       dispatch(saveInTheaters(resultData));
     } catch (err) {
-      console.log("Error", err);
+      console.warn(err);
     }
   }
 };
@@ -26,14 +25,14 @@ const saveInTheaters = (data) => {
 
 // 获取即将上映
 const fetchComingSoon = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     // dispatch(spin_show());
     try {
       let result = await request.asyncGet(API.coming_soon);
       let resultData = await result.json();
       dispatch(saveComingSoon(resultData));
     } catch (err) {
-      console.log("Error", err);
+      console.warn(err);
     }
   }
 };
@@ -45,4 +44,45 @@ const saveComingSoon = (data) => {
   }
 }
 
-export { fetchInTheaters, fetchComingSoon };
+
+//获取Top250
+const getTopInAll = () => {
+  return async (dispatch) => {
+    try {
+      let result = await request.asyncGet(API.top_in_all);
+      let resultData = await result.json();
+      dispatch(saveTopInAll(resultData));
+    } catch (err) {
+      console.warn(err)
+    }
+  }
+}
+
+const saveTopInAll = (data) => {
+  return {
+    type: actionTypes.SAVE_TOP_IN_ALL,
+    data
+  }
+}
+
+//获取北美排行榜
+const getTopInNa = () => {
+  return async (dispatch) => {
+    try {
+      let result = await request.asyncGet(API.top_in_na);
+      let resultData = await result.json();
+      dispatch(saveTopInNa(resultData));
+    } catch (err) {
+      console.warn(err)
+    }
+  }
+}
+
+const saveTopInNa = (data) => {
+  return {
+    type: actionTypes.SAVE_TOP_IN_NA,
+    data
+  }
+}
+
+export { fetchInTheaters, fetchComingSoon, getTopInAll, getTopInNa };

@@ -27,5 +27,30 @@ const ComingSoon = (state = initComingSoon, action) => {
   }
 }
 
+const initTopInAll = {
+  subjects: []
+}
+const TopInAll = (state = initTopInAll, action) => {
+  switch (action.type) {
+    case actionTypes.SAVE_TOP_IN_ALL:
+      return action.data;
+      break;
+    default:
+      return state
+  }
+}
 
-export { InTheaters, ComingSoon};
+const initTopInNa = {
+  subjects: []
+}
+const TopInNa = (state = initTopInNa, action) => {
+  switch (action.type) {
+    case actionTypes.SAVE_TOP_IN_NA:
+      return action.data;
+      break;
+    default:
+      return state
+  }
+}
+
+export { InTheaters, ComingSoon, TopInAll, TopInNa};
