@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import { Carousel } from 'antd-mobile';
+import Movie from '../common/Movie'
 
 export default class TopInAll extends Component {
   componentDidMount(){
@@ -19,9 +20,7 @@ export default class TopInAll extends Component {
           {
             subjects.map((el, index) => (
               <div key={index}>
-                <Link to={`/movie?id=${el.id}`}>
-                  ({index + 1}): {el.title}
-                </Link>
+               ({index+1}) <Movie {...el} />
               </div>
             ))
           }

@@ -6,7 +6,7 @@ import Collect from './Collect'
 export default (props) => (
   <div className="movie-item">
     <Link to={`/movie?id=${props.id}`}>
-      <div className="post"><img src={props.images.small} alt={props.alt} /></div>
+      <div className="post"><img src={props.images.small} /></div>
       <div className="details">
         <div className="title">{props.title}</div>
         <div className="rating"><Rating readonly={true} rating={props.rating.stars / 10} avertage={props.rating.average}/></div>
