@@ -3,11 +3,6 @@ import React, { Component } from 'react'
 export default class HeadBar extends Component {
   constructor(){
     super()
-    this.toShare = this.toShare.bind(this)
-  }
-
-  toShare(){
-
   }
 
   render() {
@@ -20,7 +15,6 @@ export default class HeadBar extends Component {
         <div>
           {back}
           <h2>{this.props.title}</h2>
-          <a className="icon-share" href='#' onClick={this.toShare}>share</a>
         </div>
       </header>
     )

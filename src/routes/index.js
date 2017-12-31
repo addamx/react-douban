@@ -8,10 +8,11 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import Home from '../pages/Home';
 import Search from '../pages/Search';
 import MovieSearch from '../pages/Search/MovieSearch';
-import Movie from '../pages//Movie';
-import Rank from '../pages//Rank';
+import Movie from '../pages/Movie';
+import Filmmaker from '../pages/Filmmaker';
+import Rank from '../pages/Rank';
 
-//import NotFound from '../components/Common/NotFound';
+//import NotFound from '../components/common/NotFound';
 
 const Routes = () => (
   <div className="app">
@@ -21,6 +22,7 @@ const Routes = () => (
         <Route path="/search" component={Search} />
         <Route path="/search-movie" component={MovieSearch} />
         <Route path="/movie" component={Movie} />
+        <Route path="/filmmaker" component={Filmmaker} />
         <Route path="/rank" component={Rank} />
 
         {/* <Route path='/404' component={NotFound} /> */}

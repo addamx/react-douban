@@ -1,5 +1,6 @@
 import React from 'react'
-import Movie from '../Common/Movie'
+import Movie from '../common/Movie'
+import { Icon } from 'antd-mobile'
 
 export default class extends React.Component {
   constructor(props) {
@@ -7,19 +8,26 @@ export default class extends React.Component {
   }
 
   componentDidMount() {
-    this.props.movieActions.fetchInTheaters()
+    this.props.InTheaters !== null || this.props.movieActions.fetchInTheaters()
   }
 
   render() {
-    const subjects = this.props.InTheaters.subjects;
-    return (
-      <ul>
-        {
-          subjects.map((el,index) => (
-            <li key={index} ><Movie {...el} /></li>
-          ))
-        }
-      </ul>
-    )
+    if (this.props.InTheaters !== null ) {
+      const subjects = this.props.InTheaters.subjects;
+      return (
+        <ul>
+          {
+            subjects.map((el, index) => (
+              <li key={index} ><Movie {...el} /></li>
+            ))
+          }
+        </ul>
+      )
+    } else {
+      return (
+        <Icon type="loading" size="lg" />
+      )
+    }
+
   }
 }

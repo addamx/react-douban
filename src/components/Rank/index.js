@@ -13,7 +13,6 @@ export default class Rank extends Component {
     }
   }
   render() {
-    console.log(this.constructor.name);
     return (
       <div className={'page'}>
         <HeadBar back={true} title={this.state.title} />

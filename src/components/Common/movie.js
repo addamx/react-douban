@@ -18,13 +18,5 @@ export default (props) => (
         }).join(' / ')}</div>
       </div>
     </Link>
-
-    <div className="collect">
-      <div>{props.collect_count}人看过</div>
-      <Collect actions={{'wanna':true}} />
-    </div>
   </div>
-
-
-
 )

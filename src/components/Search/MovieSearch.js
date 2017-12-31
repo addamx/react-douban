@@ -2,12 +2,14 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { SearchBar, Pagination, Icon } from 'antd-mobile'
 import { getQueryKeys, debounce } from '../../util/func'
+import Movie from '../common/Movie'
+
 
 export default class extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      value: this.props.location.search ? getQueryKeys(this.props.location.search, 'q') : '',
+      value: this.props.location.search ? getQueryKeys(this.props.location.search, 'q', 'tag') : '',
       currentPage: 1
     }
     this.onChange = this.onChange.bind(this)
@@ -42,51 +44,50 @@ export default class extends React.Component {
   }
 
   render() {
-    const pages = this.getPages();
-
-    return (
-      <div>
-        <SearchBar placeholder="Search"
-          showCancelButton
-          value={this.state.value}
-          onChange={this.onChange}
-        />
-        <div className="movies-container">
-          <h5>共{this.props.SearchResult.total}个电影</h5>
-          <ul>
-            {
-              this.props.SearchResult.subjects.map((el, index) => (
-                <li key={el.id}>
-                  <a href="#" onClick={(e) => { e.preventDefault() }}>
-                    <img src={el.images.small} />
-                    {el.title}<br />
-                    {el.rating.stars}{' '}{el.rating.average.toFixed(1)}<br />
-                    {el.directors.length !== 0 && '导演：' +
-                      el.directors.reduce((sum, val, index) => {
-                        return sum + (index != 0 ? ' / ' : '') + val.name
-                    }, '')}
-                    <br/>
-                    {el.casts.length !== 0 && '主演：' +
-                      el.casts.reduce((sum, val, index) => {
-                        return sum + (index != 0 ? ' / ' : '') + val.name
-                    }, '')}
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
-          <Pagination
-            total={pages}
-            className="custom-pagination-with-icon"
-            current={this.state.currentPage}
-            locale={{
-              prevText: (<span className="arrow-align"><Icon type="left" />上一步</span>),
-              nextText: (<span className="arrow-align">下一步<Icon type="right" /></span>),
-            }}
-            onChange = {this.onPageChange}
+    if (!this.props.Loading) {
+      const pages = this.getPages();
+      return (
+        <div>
+          <SearchBar placeholder="Search"
+            showCancelButton
+            value={this.state.value}
+            onChange={this.onChange}
           />
+          <div className="movies-container">
+            <h5>共{this.props.SearchResult.total}个电影</h5>
+            <ul>
+              {
+                this.props.SearchResult.subjects.map((el, index) => (
+                  <li key={el.id}>
+                    <Movie {...el} />
+                  </li>
+                ))
+              }
+            </ul>
+            <Pagination
+              total={pages}
+              className="custom-pagination-with-icon"
+              current={this.state.currentPage}
+              locale={{
+                prevText: (<span className="arrow-align"><Icon type="left" />上一步</span>),
+                nextText: (<span className="arrow-align">下一步<Icon type="right" /></span>),
+              }}
+              onChange = {this.onPageChange}
+            />
+          </div>
         </div>
-      </div>
-    )
+      )
+    } else {
+      return (
+        <div>
+          <SearchBar placeholder="Search"
+            showCancelButton
+            value={this.state.value}
+            onChange={this.onChange}
+          />
+          <Icon type="loading" size="lg" />
+        </div>
+      )
+    }
   }
 }
