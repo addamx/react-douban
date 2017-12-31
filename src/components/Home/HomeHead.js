@@ -10,9 +10,6 @@ export default class extends Component {
   render () {
     return (
       <div>
-        <div className="cityName">
-          <Link to="/city"><i>city</i></Link>
-        </div>
         <div className="searchMovie">
           <Link to="/search"><div>Search Movie</div></Link>
         </div>

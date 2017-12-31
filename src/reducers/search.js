@@ -1,9 +1,6 @@
 import * as actionTypes from '../constants/actionTypes'
 
-const initState = {
-  title: '默认搜索标题',
-  subjects: []
-}
+const initState = []
 
 const SearchResult = (state = initState, action) => {
   switch (action.type) {

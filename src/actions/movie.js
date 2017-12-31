@@ -1,4 +1,3 @@
-//import * as actionTypes from '../constants/actionTypes';
 import API from '../util/API';
 import request from '../util/request';
 import * as actionTypes from '../constants/actionTypes';
