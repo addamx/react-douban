@@ -1,0 +1,72 @@
+.home-page {
+
+
+  .logo {
+    font-size: 1.1rem;
+    color: #ffffff;
+    white-space: nowrap;
+    flex: none;
+  }
+
+  .searchbar {
+    flex-grow: 1;
+    padding-left: 0.3rem;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+  }
+
+  .searchbar a {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: center;
+    background: #ffffff;
+    border-radius: 0.2rem;
+    color: #9f9f9f;
+  }
+
+
+  .tab ul {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tab .movie-item a {
+    display: flex;
+    justify-content: stretch;
+    padding: 0.4rem;
+    border-bottom: 1px solid #d4d4d4;
+  }
+
+  .tab li:last-child a {
+    border-bottom: none;
+  }
+
+  .tab .post {
+    width: 25%;
+  }
+
+
+  .tab .details {
+    width: 75%;
+    padding-left: 0.7rem;
+  }
+
+  .details .title {
+    font-weight: bold;
+    line-height: 2;
+  }
+
+  .rating {
+    margin-bottom: 0.2rem;
+  }
+
+  .director,
+  .casts {
+    line-height: 1.4;
+    font-size: 0.55rem;
+  }
+
+
+}

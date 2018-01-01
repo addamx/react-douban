@@ -42,9 +42,10 @@ export default class Movie extends Component {
   }
 
   render() {
+    console.log(this.state)
     if (this.state !== null) {
       return (
-        <div>
+        <div className="page page-movie">
           <HeadBar back={true} title={this.state.title} />
           <div className="poster">
             <div className="img-wrap"><img src={this.state.images.medium} alt={this.state.title} /></div>
@@ -99,7 +100,11 @@ export default class Movie extends Component {
         </div>
       )
     } else {
-      return (<Icon type="loading" size="lg" />)
+      return (
+        <div className="page page-movie empty">
+          <div className="page-loading"><Icon type="loading" size="lg" /></div>
+        </div>
+      )
     }
   }
 }

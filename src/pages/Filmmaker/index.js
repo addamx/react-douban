@@ -30,7 +30,7 @@ export default class Filmmaker extends Component {
   render() {
     if (this.state !== null)  {
       return (
-        <div>
+        <div className="page page-filmmaker">
           <HeadBar back={true} title={this.state.name} />
           <div className="poster">
             <div className="img-wrap"><img src={this.state.avatars.medium} alt={this.state.name} referrerPolicy="never" /></div>
@@ -64,7 +64,9 @@ export default class Filmmaker extends Component {
       )
     } else {
       return (
-        <Icon type="loading" size="lg" />
+        <div className="page page-filmmaker empty">
+          <div className="page-loading"><Icon type="loading" size="lg" /></div>
+        </div>
       )
     }
   }

@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import { Pagination } from 'antd-mobile'
 import Movie from '../common/Movie'
 import { Icon } from 'antd-mobile'
+import './search.scss'
 
 export default class extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ export default class extends React.Component {
     if (!this.props.Loading) {
       return (
         <div>
-          <div className="genres-container">
+          <div className="page-row genres-container">
             <h5>分类查找</h5>
             <ul>
               {
@@ -23,19 +24,19 @@ export default class extends React.Component {
               }
             </ul>
           </div>
-          <div className="filmmakers-container">
+          <div className="page-row filmmakers-container">
             <h5>影人</h5>
             <ul>
               {
                 this.props.messResult.filmmakerList.map((el, index) => (
-                  <li key={index}><Link to={`/filmmaker?id=${el.id}`}><img src={el.avatars && el.avatars.small} referrerPolicy="never"/>{el.name}</Link></li>
+                  <li key={index}><Link to={`/filmmaker?id=${el.id}`}><div className="avatar"><img src={el.avatars && el.avatars.small} referrerPolicy="never"/></div><div className="name">{el.name}</div></Link></li>
                 ))
               }
             </ul>
           </div>
-          <div className="movies-container">
+          <div className="page-row movies-container">
             <h5>影视</h5>
-            <ul>
+            <ul className="movie-list">
               {
                 this.props.messResult.movieList.slice(0,10).map((el, index) => (
                   <li key={el.id}>
@@ -50,7 +51,7 @@ export default class extends React.Component {
       )
     } else {
       return (
-        <Icon type="loading" size="lg" />
+        <div className="page-loading"><Icon type="loading" size="lg" /></div>
       )
     }
   }

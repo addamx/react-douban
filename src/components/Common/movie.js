@@ -9,7 +9,7 @@ export default (props) => (
       <div className="post"><img src={props.images.small} /></div>
       <div className="details">
         <div className="title">{props.title}</div>
-        <div className="rating"><Rating readonly={true} rating={props.rating.stars / 10} avertage={props.rating.average}/></div>
+        <Rating readonly={true} rating={props.rating.stars / 10} avertage={props.rating.average}/>
         <div className="director">导演: {props.directors.map((el)=>{
           return el.name;
         }).join(' / ')}</div>

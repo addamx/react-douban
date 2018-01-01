@@ -4,6 +4,8 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux'
 import store from './store'
 import Routes from './routes';
+import './util/rem';
+import './style/index.scss';
 
 // store.subscribe(() =>
 //     console.log(store.getState())

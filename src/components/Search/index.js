@@ -6,6 +6,7 @@ import SearchMovieAly from '../../util/SearchMovieAly'
 import { debounce, getQueryKeys } from '../../util/func'
 import * as Storage from '../../util/localStorage'
 import { Link } from 'react-router-dom'
+import './search.scss'
 
 
 
@@ -49,9 +50,9 @@ export default class extends Component {
       return
     }
     if (org.length >= 10) {
-      this.setState({ searchHistory: [...org.slice(1), search] })
+      this.setState({ searchHistory: [search, ...org.slice(1)] })
     } else {
-      this.setState({ searchHistory: [...org, search] })
+      this.setState({ searchHistory: [search, ...org] })
     }
 
     Storage.setItem('searchHistory', JSON.stringify(this.state.searchHistory))
@@ -62,7 +63,7 @@ export default class extends Component {
     if (this.state.value) {
       resultRender = <SearchResult {...this.props} messResult={this.state.messResult} query={this.state.value} />
     } else {
-      resultRender = <div>
+      resultRender = <div className="page-row search-history">
         <h5>搜索历史</h5>
         <ul>
           {
@@ -75,13 +76,16 @@ export default class extends Component {
     }
 
     return (
-      <div className="container search-page">
-        <SearchBar placeholder="Search"
-          showCancelButton
-          value={this.state.value}
-          onChange={this.onChange}
-          onCancel={() => this.props.history.go(-1)}
-        />
+      <div className="page search-page no-footer">
+        <div className="searchbar-wrap">
+          <SearchBar placeholder="Search"
+            showCancelButton
+            value={this.state.value}
+            onChange={this.onChange}
+            onCancel={() => this.props.history.go(-1)}
+            placeholder="搜索电影"
+          />
+        </div>
         {resultRender}
 
       </div>

@@ -1,8 +1,8 @@
 const path = require("path");
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const extractCSS = new ExtractTextPlugin('stylesheets/[name].css');
-const extractLESS = new ExtractTextPlugin('stylesheets/[name].less');
+const extractCSS = new ExtractTextPlugin('[name].css');
+const extractLESS = new ExtractTextPlugin('[name].less');
 
 
 module.exports = {
@@ -11,6 +11,7 @@ module.exports = {
   },
   output: {
     path: path.resolve('./dist/'),
+    publicPath: '/',
     filename: '[name].js'
   },
   resolve: {

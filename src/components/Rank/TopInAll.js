@@ -9,7 +9,7 @@ export default class TopInAll extends Component {
   }
   render() {
     if (this.props.TopInAll !== null) {
-      let subjects = this.props.TopInAll.subjects
+      let subjects = this.props.TopInAll.subjects.slice(0, 18)
       let ulList = []
       for (let i = 0, len = subjects.length, _ul = []; i < len; i++) {
         _ul.push(subjects[i])
@@ -19,7 +19,7 @@ export default class TopInAll extends Component {
         }
       }
       return (
-        <section>
+        <div className="page-row topinall">
           <h5>TOP250</h5>
           <Carousel
             autoplay={false}
@@ -27,7 +27,7 @@ export default class TopInAll extends Component {
           >
             {
               ulList.map((el, index) => {
-                return <ul key={index}>
+                return <ul className="inner-sliders cols-3" key={index}>
                   {
                     el.map((_el, _index) => (
                       <li key={_index}><Movie {..._el} /></li>
@@ -37,10 +37,10 @@ export default class TopInAll extends Component {
               })
             }
           </Carousel>
-        </section>
+        </div>
       )
     } else {
-      return (<div></div>)
+      return (<div className="page-row"></div>)
     }
   }
 }

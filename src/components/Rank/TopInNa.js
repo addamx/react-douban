@@ -10,18 +10,18 @@ export default class TopInNa extends Component {
     if (this.props.TopInNa !== null) {
       let subjects = this.props.TopInNa.subjects
       return (
-        <section>
+        <div className="page-row topinna">
           <h5>北美票房榜</h5>
-          <ul>
+          <ul className="movie-list">
             {
               subjects.map((el, index) => (
                 <li key={index}>
-                  ({index + 1}) <Movie {...el.subject} />
+                  <div className="rank-num">({index + 1})</div><Movie {...el.subject} />
                 </li>
               ))
             }
           </ul>
-        </section>
+        </div>
       )
     } else {
       return (<div></div>)

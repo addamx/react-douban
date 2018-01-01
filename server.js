@@ -1,56 +1,35 @@
 const webpack = require('webpack');
 const path = require("path");
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
-const history = require('connect-history-api-fallback');
+const WebpackDevServer = require('webpack-dev-server');
 const proxy = require('http-proxy-middleware');
 
-const app = new(require('express'))();
 const cfg = require('./webpack.dev.config');
 
-//仅仅server.js改成const address = "0.0.0.0";会发生跨域问题
-const address = 'localhost';
-const port = '3300';
-const compiler = webpack(cfg);
 
-app.use(webpackDevMiddleware(compiler, {
-    noInfo: false,
-    publicPath: cfg.output.publicPath,
-    inline: true,
-    hot: true,
-    quiet: false,
-    stats: {
-        colors: true
+new WebpackDevServer(webpack(cfg), {
+  publicPath: cfg.output.publicPath,//-此路径下的打包文件可在浏览器中访问
+  historyApiFallback: true, //-true:任意的 404 响应都可能需要被替代为 index.html
+  hot: true,  //-启用 webpack 的模块热替换特性(需要HotModuleReplacementPlugin)
+  inline: true,    //-是否启用内联模式, false则使用iframe模式; 推荐使用模块热替换的内联模式，因为它包含来自 websocket 的 HMR 触发器。轮询模式可以作为替代方案，但需要一个额外的入口点：'webpack/hot/poll?1000'。
+  noInfo: false,  //-隐藏每次启动或保存之后显示的bundle信息
+  stats: {    //-stats 选项能让你准确地控制显示哪些包的信息 https://doc.webpack-china.org/configuration/stats
+    colors: true,   //- 等同于`webpack --colors`
+  },
+  proxy: {    //-代理 [http-proxy-middleware: https://github.com/chimurai/http-proxy-middleware#options]
+    '/api/*': {
+      target: 'https://api.douban.com/v2/',
+      changeOrigin: true,      //解决跨域问题
+      pathRewrite: { "^/api": "" }
+    },
+    '/': {
+      bypass: (req, res, proxyOptions) => {
+        return `${cfg.output.publicPath}/index.html`
+      }
     }
-}));
-app.use(webpackHotMiddleware(compiler));
-
-
-const api = proxy('/api', {
-    target: 'https://api.douban.com/v2/',
-    changeOrigin: true,
-    pathRewrite: {
-        "^/api": ""
-    }
-});
-app.use('/api/*', api);
-
-app.get('/test', function (req, res) {
-    const data = {
-        title: '2',
-        content: 'success'
-    }
-    res.send(data)
-});
-
-app.get("*", function (req, res) {
-    res.sendFile(path.resolve(__dirname, 'index.html'));
-});
-
-const server = app.listen(port, address, function (error) {
-    if (error) {
-        console.error(error);
-    } else {
-        console.info("==> Listening on port %s. Open up http://%s: %s/ in your browser.", port, address, port);
-    }
+  }
+}).listen(3300, 'localhost', function (err) {
+  if (err) {
+    console.log(err);
+  }
+  console.log('Listening at localhost:3300');
 });

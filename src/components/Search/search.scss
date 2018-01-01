@@ -1,0 +1,58 @@
+.search-history li {
+  a {
+    color: #979090;
+    font-size: 0.8rem;
+    padding: 0.3rem;
+    display: block;
+  }
+}
+
+
+.genres-container ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -0.1rem;
+
+  li {
+    margin: 0.1rem;
+  }
+
+  a {
+    padding: 0.3rem 0.4rem;
+    background: #55ae55;
+    color: #ffffff;
+    border-radius: 0.6rem;
+    display: block;
+    font-size: 0.6rem;
+  }
+}
+
+.search-more-movie a {
+  color: #55ae55;
+  display: block;
+  padding: 0.5rem 0.3rem;
+  font-weight: bold;
+}
+
+
+.filmmakers-container {
+  a {
+    display: flex;
+  }
+
+  .avatar {
+    width: 15%;
+  }
+
+  .name {
+    flex-grow: 1;
+    align-items: center;
+    display: flex;
+    padding-left: 1rem;
+  }
+}
+
+.pagination-wrap {
+  margin: 0 -0.4rem;
+  background: #36a836;
+}

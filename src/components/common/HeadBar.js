@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Icon} from 'antd-mobile'
 
 export default class HeadBar extends Component {
   constructor(){
@@ -8,15 +9,15 @@ export default class HeadBar extends Component {
   render() {
     let back = ''
     if (typeof this.props.back) {
-      back = <a href='#' onClick={()=>history.go(-1)}>&lt;back</a>
+      back = <a className="goback" href='#' onClick={()=>history.go(-1)}><Icon type="left" size="lg" color="#ffffff"/></a>
     }
     return (
-      <header>
-        <div>
-          {back}
-          <h2>{this.props.title}</h2>
-        </div>
-      </header>
+      <div className="header-wrap">
+        <header>
+            {back}
+            <h1>{this.props.title}</h1>
+        </header>
+      </div>
     )
   }
 }

@@ -17,41 +17,31 @@ export default class extends React.Component {
       {
         id: 'homeTab',
         name: '首页',
-        icon: 'https://zos.alipayobjects.com/rmsportal/sifuoDUQdAFKAVcFGROC.svg',
-        selectedIcon: 'https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg',
+        icon: (<svg width="20" height="20"><use xlinkHref="#home"></use></svg>),
+        selectedIcon: (<svg width="20" height="20"><use xlinkHref="#home-selected"></use></svg>),
         route: '/'
       },
       {
         id:'rankTab',
         name: '排行榜',
-        icon: 'https://zos.alipayobjects.com/rmsportal/sifuoDUQdAFKAVcFGROC.svg',
-        selectedIcon: 'https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg',
+        icon: (<svg width="20" height="20"><use xlinkHref="#rank"></use></svg>),
+        selectedIcon: (<svg width="20" height="20"><use xlinkHref="#rank-selected"></use></svg>),
         route: '/rank'
       }
     ]
     return (
-      <div style={{ position: 'fixed', width: '100%', bottom: '0' }}>
+      <footer>
         <TabBar
-          unselectedTintColor="#949494"
-          tintColor="#33A3F4"
-          barTintColor="white">
+          unselectedTintColor="#333333"
+          tintColor="#36a836"
+          barTintColor="#ffffff">
           {
             tabs.map((el, index) => (
               <TabBar.Item
                 title={el.name}
                 key={el.id}
-                icon={<div style={{
-                  width: '22px',
-                  height: '22px',
-                  background: `url(${el.icon}) center center /  21px 21px no-repeat`
-                }}
-                />}
-                selectedIcon={<div style={{
-                  width: '22px',
-                  height: '22px',
-                  background: `url(${el.selectedIcon}) center center /  21px 21px no-repeat`
-                }}
-                />}
+                icon={el.icon}
+                selectedIcon={el.selectedIcon}
                 selected={this.state.selectedTab === el.id}
                 onPress={() => {
                   this.setState({
@@ -64,7 +54,7 @@ export default class extends React.Component {
             ))
           }
         </TabBar>
-      </div>
+      </footer>
     )
   }
 }

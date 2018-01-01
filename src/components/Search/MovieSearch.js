@@ -44,18 +44,21 @@ export default class extends React.Component {
   }
 
   render() {
-    if (!this.props.Loading) {
+    if (this.props.SearchResult.length !== 0) {
       const pages = this.getPages();
       return (
-        <div>
-          <SearchBar placeholder="Search"
-            showCancelButton
-            value={this.state.value}
-            onChange={this.onChange}
-          />
-          <div className="movies-container">
+        <div className="page movie-search-page">
+          <div className="searchbar-wrap">
+            <SearchBar placeholder="Search"
+              showCancelButton
+              value={this.state.value}
+              onChange={this.onChange}
+              placeholder="搜索电影"
+            />
+          </div>
+          <div className="page-row movies-container">
             <h5>共{this.props.SearchResult.total}个电影</h5>
-            <ul>
+            <ul className="movie-list">
               {
                 this.props.SearchResult.subjects.map((el, index) => (
                   <li key={el.id}>
@@ -64,7 +67,7 @@ export default class extends React.Component {
                 ))
               }
             </ul>
-            <Pagination
+            <div className="pagination-wrap"><Pagination
               total={pages}
               className="custom-pagination-with-icon"
               current={this.state.currentPage}
@@ -73,19 +76,19 @@ export default class extends React.Component {
                 nextText: (<span className="arrow-align">下一页<Icon type="right" /></span>),
               }}
               onChange = {this.onPageChange}
-            />
+            /></div>
           </div>
         </div>
       )
     } else {
       return (
-        <div>
-          <SearchBar placeholder="Search"
+        <div className="page movie-search-page empty">
+          <div className="searchbar-wrap"><SearchBar placeholder="Search"
             showCancelButton
             value={this.state.value}
             onChange={this.onChange}
-          />
-          <Icon type="loading" size="lg" />
+          /></div>
+          <div className="page-loading"><Icon type="loading" size="lg" /></div>
         </div>
       )
     }

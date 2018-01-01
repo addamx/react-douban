@@ -25,7 +25,7 @@ export default class extends React.Component {
       )
     } else {
       return (
-        <Icon type="loading" size="lg" />
+        <div className="page-loading"><Icon type="loading" size="lg" /></div>
       )
     }
 

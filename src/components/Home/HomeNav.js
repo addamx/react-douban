@@ -14,12 +14,12 @@ export default class extends Component {
       {title: '正在上映'}, {title: '即将上映'}
     ]
     return (
-      <div>
+      <div className="home-tabs">
         <Tabs tabs={tabs}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
+          <div className="tab" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
             <InTheaters {...this.props} />
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
+          <div className="tab" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
             <ComingSoon {...this.props} />
           </div>
         </Tabs>
