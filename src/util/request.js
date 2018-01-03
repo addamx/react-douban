@@ -1,4 +1,6 @@
 import qs from 'qs';
+import fetchJsonp from 'fetch-Jsonp'
+
 const defaultHeaders = {
   'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
 };
@@ -17,9 +19,16 @@ const post = (uri, body) => {
   }).then(parseJSONFilter).catch(error => ({ error }));
 };
 
-const asyncGet = (uri) => {
+var asyncGet = (uri) => {
   return fetch(uri);
+
 };
+
+if (__PROD__) {
+  asyncGet = (uri) => {
+    return fetchJsonp(uri);
+  }
+}
 
 const asyncPost = (uri, body) => {
   return fetch(uri, {

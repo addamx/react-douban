@@ -1,87 +1,85 @@
-const path = require("path");
+'use strict'
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const extractCSS = new ExtractTextPlugin('[name].css');
-const extractLESS = new ExtractTextPlugin('[name].less');
+const path = require('path');
 
+//webpack
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+//path config
+const rootPath = path.resolve(__dirname, '.');     // 项目根目录
+const srcPath = path.join(rootPath, 'src');             // 开发源码目录
+const env = process.env.NODE_ENV.trim();            // 当前环境
+
+const commonPath = {
+  rootPath: rootPath,
+  srcPath: srcPath,
+  dist: path.join(rootPath, 'dist'),              // build 后输出目录
+  indexHTML: path.join(srcPath, 'index.html'),        // 入口模板页面
+  staticDir: path.join(rootPath, 'static')        // 不需编译的静态资源
+};
 
 module.exports = {
-  entry: {
-    main: './src/index.js'
-  },
-  output: {
-    path: path.resolve('./dist/'),
-    publicPath: '/',
-    filename: '[name].js'
-  },
-  resolve: {
-    extensions: ['.js', '.json', '.jsx', '.css', '.scss'],
-    alias: {
-      'vue$': 'vue/dist/vue.esm.js',
-      '@': path.resolve('src'),
-    }
-  },
-  module: {
-    rules: [{
-        test: /\.vue$/,
-        loader: 'vue-loader'
-      },
-      {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: path.resolve('./node_modules/'),
-        include: path.resolve('./src/')
-      },
-      {
-        test: /\.css$/,
-        use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: 'css-loader'
-        }))
-      },
-      { //不同于css文件, 即使less/sass有@import, 也不需要css-loader的importLoaders值
-        test: /\.less$/,
-        use: extractLESS.extract(['style-loader', 'css-loader', 'postcss-loader', 'less-loader'])
-      },
-      {
-        test: /\.scss$/,
-        use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({ // css-hot-loader结局热替换CSS不自动刷新
-          fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
-        }))
-      },
-      {
-        test: /\.html$/,
-        loader: 'html-loader'
-      },
-      {
-        test: /\.json$/,
-        loader: 'json-loader'
-      },
-      {
-        test: /\.(mp3|webm|ogg)/,
-        use: {
-          loader: 'file-loader',
-        }
-      },
-      {
-        test: /\.(png|jpg|gif|svg)$/i,
-        use: [{
-          loader: 'url-loader',
-          options: {
-            limit: 5000,
-            name: 'assets/[name]-[hash:5].[ext]'
-          }
-        }]
-      },
-      {
-        test: /\.(woff|woff2|svg|ttf|eot)($|\?)/i,
-        loader: 'url-loader'
+  commonPath,
+  webpackConfig: {
+    output: {
+      path: commonPath.dist,
+      filename: '[name].js',
+      publicPath: '/'
+    },
+    resolve: {
+      extensions: ['.js', '.json', '.jsx', '.css', '.scss', 'less'],
+      alias: {
+        //'vue$': 'vue/dist/vue.esm.js',  //使用vue的完整版而非运行版
+        '@': path.resolve('src')
       }
+    },
+    module: {
+      rules: [
+        // {
+        //   test: /\.vue$/,
+        //   loader: 'vue-loader'
+        // },
+        {
+          test: /\.html$/,
+          loader: 'html-loader'
+        },
+        {
+          test: /\.json$/,
+          loader: 'json-loader'
+        },
+        {
+          test: /\.(mp3|webm|ogg)/,
+          use: {
+            loader: 'file-loader',
+          }
+        },
+        {
+          test: /\.(png|jpg|gif|svg)$/i,
+          use: [
+            {
+              loader: 'url-loader',
+              options: {
+                limit: 5000,
+                name: 'assets/[name]-[hash:5].[ext]'
+              }
+            }
+          ]
+        },
+        {
+          test: /\.(woff|woff2|svg|ttf|eot)($|\?)/i,
+          loader: 'url-loader?limit=5000&name=[name]-[hash:6].[ext]'
+        }
+      ]
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        title: 'your app title',
+        template: commonPath.indexHTML
+      }),
+      new webpack.DefinePlugin({
+        __DEV__: env === 'development',
+        __PROD__: env === 'production'
+      })
     ]
-  },
-  plugins: [
-    extractCSS,
-    extractLESS
-  ]
+  }
 }

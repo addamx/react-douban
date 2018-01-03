@@ -1,4 +1,4 @@
-$active-color: #000000;
+$active-color: #36a836;
 
 html,
 body {
@@ -26,14 +26,6 @@ body {
 
 .margin {
   margin: 0 auto;
-}
-
-.left {
-  float: left;
-}
-
-.right {
-  float: right;
 }
 
 .hide {
@@ -112,15 +104,24 @@ svg {
 
   &.empty {
     height: 100%;
-  }
-  > .page-loading {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+
+    > .page-loading {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
 
+  &.sticky {
+    margin-top: 2rem;
 
+    header {
+      position: fixed;
+      top: 0;
+      z-index: 100;
+    }
+  }
 
   header {
     display: flex;
@@ -202,35 +203,56 @@ svg {
     background: $active-color;
   }
 
+
+  .am-button {
+    font-size: 0.7rem;
+    background: transparent;
+    color: #ffffff;
+    font-weight: bold;
+  }
+  
+  .am-button.am-button-disabled {
+    color: #ffffff;
+  }
+  
+  .arrow-align {
+    display: flex;
+    align-items: center;
+  }
+  
+  .am-flexbox-item.am-pagination-wrap {
+    display: none;
+  }
+
+  .am-tabs-default-bar-tab {
+    font-size: 0.6rem;
+  }
+
 }
 
 
-.am-button {
-  font-size: 0.7rem;
-  background: transparent;
-  color: #ffffff;
-  font-weight: bold;
-}
 
-.am-button.am-button-disabled {
-  color: #ffffff;
-}
-
-
-
-.arrow-align {
-  display: flex;
-  align-items: center;
-}
 
 html:not([data-scale]) .am-button::before {
   display: none;
 }
 
-.am-flexbox-item.am-pagination-wrap {
-  display: none;
+
+
+.img-wrap {
+  font-size: 0;
+  letter-spacing: 0;
 }
 
+img.background {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  filter: blur(13px);
+}
 
-
-
+section p {
+  line-height: 1.6;
+  letter-spacing: 1.2px;
+  font-size: 0.6rem;
+}

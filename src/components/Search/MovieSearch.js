@@ -47,13 +47,14 @@ export default class extends React.Component {
     if (this.props.SearchResult.length !== 0) {
       const pages = this.getPages();
       return (
-        <div className="page movie-search-page">
+        <div className={'page movie-search-page no-footer' + (this.props.Loading ? ' empty' : '')}>
           <div className="searchbar-wrap">
             <SearchBar placeholder="Search"
               showCancelButton
               value={this.state.value}
               onChange={this.onChange}
-              placeholder="搜索电影"
+              onCancel={() => this.props.history.push('/')}
+              placeholder="搜索"
             />
           </div>
           <div className="page-row movies-container">

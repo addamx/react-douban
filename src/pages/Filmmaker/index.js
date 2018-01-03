@@ -30,26 +30,26 @@ export default class Filmmaker extends Component {
   render() {
     if (this.state !== null)  {
       return (
-        <div className="page page-filmmaker">
+        <div className="page page-filmmaker sticky">
           <HeadBar back={true} title={this.state.name} />
           <div className="poster">
             <div className="img-wrap"><img src={this.state.avatars.medium} alt={this.state.name} referrerPolicy="never" /></div>
           </div>
-          <div className="details">
-            <div className="details-props">
+          <div className="page-row details">
+            <section className="details-props">
               <div className="left">
                 <h1>{this.state.name}</h1>
-                <div className="props" >
+                <div className="pros" >
                   {this.state.aka_en.join(' / ')}<br/>
                   性别: {this.state.gender}<br />
                   出生地: {this.state.born_place}
                 </div>
               </div>
-            </div>
+            </section>
 
-            <div className="works">
+            <section className="works">
               <h5>代表作品</h5>
-              <ul>
+              <ul className="movie-list">
                 {
                   this.state.works.map((el, index) => (
                     <li key={index}>
@@ -58,7 +58,7 @@ export default class Filmmaker extends Component {
                   ))
                 }
               </ul>
-            </div>
+            </section>
           </div>
         </div>
       )

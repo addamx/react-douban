@@ -76,13 +76,13 @@ export default class extends Component {
     }
 
     return (
-      <div className="page search-page no-footer">
+      <div className={'page search-page no-footer' + (this.props.Loading ? ' empty' : '')}>
         <div className="searchbar-wrap">
           <SearchBar placeholder="Search"
             showCancelButton
             value={this.state.value}
             onChange={this.onChange}
-            onCancel={() => this.props.history.go(-1)}
+            onCancel={() => this.props.history.push('/')}
             placeholder="搜索电影"
           />
         </div>

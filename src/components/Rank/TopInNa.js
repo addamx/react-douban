@@ -16,7 +16,7 @@ export default class TopInNa extends Component {
             {
               subjects.map((el, index) => (
                 <li key={index}>
-                  <div className="rank-num">({index + 1})</div><Movie {...el.subject} />
+                  <div className="rank-num">{index + 1}&nbsp;</div><Movie {...el.subject} />
                 </li>
               ))
             }
