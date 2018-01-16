@@ -8,7 +8,7 @@ export default class extends Component {
 
   render() {
     return (
-      <div className="page home-page">
+      <div className="home-page page">
         <HomeHead {...this.props} />
         <HomeNav {...this.props} />
         <Footer {...this.props} pageId={'homeTab'} />

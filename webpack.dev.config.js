@@ -51,14 +51,19 @@ module.exports = merge(baseConfig, {
       },
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: [
+            'css-loader', 'postcss-loader',
+            'sass-loader']
+        })
       },
       {
 				test: /\.css$/,
 				use: [
 					'style-loader',
 					{
-						loader: 'css-loader',
+						loader: 'css-loader',//?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]
 						options: {
 							importLoaders: 1		//告示@import来的css文件使用之前多少个loader;只对.css文件起效
 						}
@@ -68,21 +73,22 @@ module.exports = merge(baseConfig, {
     ]
   } ,
   plugins: [
+    new ExtractTextPlugin('css/[name].[hash:5].css'),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development')
     }),
     new ExtractTextPlugin('css/[name].[hash:5].css'),
     new webpack.HotModuleReplacementPlugin(), //模块热替换,如果不在dev-server模式下
     new webpack.NoEmitOnErrorsPlugin(), //跳过输出阶段。这样可以确保输出资源不会包含错误, 取代webpack 1 的 NoErrorsPlugin 插件。
-    new BrowserSyncPlugin({
-      host: '127.0.0.1',
-      port: 3300,
-      proxy: 'http://127.0.0.1:3300/',
-      logConnections: false,
-      notify: false
-    }, {
-      reload: false
-    })
+    // new BrowserSyncPlugin({
+    //   host: '127.0.0.1',
+    //   port: 3300,
+    //   proxy: 'http://127.0.0.1:3300/',
+    //   logConnections: false,
+    //   notify: false
+    // }, {
+    //   reload: false
+    // })
     // new OpenBrowserPlugin({ url: 'http://localhost:3300' })
   ]
 })
