@@ -19,9 +19,9 @@ module.exports = merge(baseConfig, {
     app: path.join(pathConfig.srcPath, "index.js"),
     vendor: Object.keys(pkg.dependencies)
   },
-  // output: {
-  //   publicPath: '/react/douban-movie/'
-  // },
+  output: {
+    publicPath: '/douban-movie/'
+  },
   module: {
     rules: [
       {
