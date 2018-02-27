@@ -131,7 +131,7 @@ svg {
     background: #36a836;
     justify-content: stretch;
     position: relative;
-    height: 14vh;
+    height: 2rem;
 
     .goback {
       position: absolute;
@@ -181,7 +181,7 @@ svg {
 
   .am-search {
     background-color: #36a836;
-    height: 14vh;
+    height: 2rem;
   }
 
   .am-search-cancel {
@@ -255,4 +255,10 @@ section p {
   line-height: 1.6;
   letter-spacing: 1.2px;
   font-size: 0.6rem;
+}
+
+@media (min-width: 768px) {
+  html {font-size: 48px !important;}
+  #root {width: 768px;margin: 0 auto;}
+  .page footer {width: 768px;margin: 0 auto;}
 }

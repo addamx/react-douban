@@ -11,7 +11,7 @@ import Rank from '../pages/Rank';
 
 let basename = '/';
 if (__PROD__) {
-  basename = '/douban-movie/index.html'
+  basename = '/douban-movie/'
 }
 
 const Routes = () => (

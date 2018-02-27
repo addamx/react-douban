@@ -77,7 +77,7 @@ export default class Movie extends Component {
                     <li key={el.id}>
                       <figure>
                         <Link to={`/filmmaker?id=${el.id}`}>
-                          <img src={el.avatars.small} alt={el.alt} referrerPolicy="never" />
+                          <img src={el.avatars && el.avatars.small} alt={el.alt} referrerPolicy="never" />
                           <figcaption>{el.name}</figcaption>
                           <small>导演</small>
                         </Link>
@@ -90,7 +90,7 @@ export default class Movie extends Component {
                     <li key={el.id}>
                       <figure>
                         <Link to={`/filmmaker?id=${el.id}`}>
-                        <img src={el.avatars.small} alt={el.alt} referrerPolicy="never" />
+                        <img src={el.avatars && el.avatars.small} alt={el.alt} referrerPolicy="never" />
                         <figcaption>{el.name}</figcaption>
                         </Link>
                       </figure>
