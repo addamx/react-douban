@@ -88,6 +88,7 @@ svg {
 }
 
 #root, .app {
+  height: 100%;
   background: #ffffff;
 }
 .page {
@@ -255,6 +256,10 @@ section p {
   line-height: 1.6;
   letter-spacing: 1.2px;
   font-size: 0.6rem;
+}
+
+.am-search-input input[type="search"], .am-search-input .am-search-synthetic-ph, .am-search-input {
+  height: 1rem;
 }
 
 
